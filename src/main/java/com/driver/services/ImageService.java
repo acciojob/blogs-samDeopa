@@ -20,11 +20,11 @@ public class ImageService {
         Image image = new Image();
         image.setBlog(blog);
         image.setDescription(description);
-        image.setDimension(dimensions);
+        image.setDimensions(dimensions);
 
-        List<Image> listOfImage = blog.getImage();
+        List<Image> listOfImage = blog.getImageList();
         listOfImage.add(image);
-        blog.setImage(listOfImage);
+        blog.setImageList(listOfImage);
 
 
 
@@ -36,16 +36,16 @@ public class ImageService {
     public void deleteImage(Integer id){
         Image image = imageRepository2.findById(id).get();
         Blog blog = image.getBlog();
-        List<Image> listOfImage = blog.getImage();
+        List<Image> listOfImage = blog.getImageList();
         listOfImage.remove(image);
-        blog.setImage(listOfImage);
+        blog.setImageList(listOfImage);
         imageRepository2.deleteById (image.getId());
     }
 
     public int countImagesInScreen(Integer id, String screenDimensions) {
 
         Image image = imageRepository2.findById(id).get();
-        String imageDimension = image.getDimension();
+        String imageDimension = image.getDimensions();
         int screenArea = Integer.parseInt(screenDimensions.substring(0,1))* Integer.parseInt(screenDimensions.substring(2));
         int imageArea = Integer.parseInt(imageDimension.substring(0,1))* Integer.parseInt(imageDimension.substring(2));
         int count = screenArea/imageArea;

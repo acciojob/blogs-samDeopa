@@ -1,15 +1,12 @@
 package com.driver.services;
 
 import com.driver.models.Blog;
-import com.driver.models.Image;
 import com.driver.models.User;
 import com.driver.repositories.BlogRepository;
-import com.driver.repositories.ImageRepository;
 import com.driver.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -26,9 +23,9 @@ public class BlogService {
         blog.setPubDate(new Date());
         User user = userRepository1.findById(userId).get();
 
-        List<Blog> userBlocks = user.getWrittenBlogs();
+        List<Blog> userBlocks = user.getBlogList();
         userBlocks.add(blog);
-        user.setWrittenBlogs(userBlocks);
+        user.setBlogList(userBlocks);
 
         blog.setUser(user);
 
@@ -44,9 +41,9 @@ public class BlogService {
 
         User user = blog.getUser();
 
-        List<Blog> blogsList = user.getWrittenBlogs();
+        List<Blog> blogsList = user.getBlogList();
         blogsList.remove(blog);
-        user.setWrittenBlogs(blogsList);
+        user.setBlogList(blogsList);
 
         blogRepository1.deleteById(blog.getId());
         //delete blog and corresponding images

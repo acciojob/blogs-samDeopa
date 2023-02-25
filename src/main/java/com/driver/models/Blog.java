@@ -1,6 +1,5 @@
 package com.driver.models;
 
-import javax.annotation.Generated;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,7 +19,7 @@ public  class Blog {
     private User user;
 
     @OneToMany(mappedBy = "blog", cascade = CascadeType.ALL)
-    private List<Image> image = new ArrayList<>();
+    private List<Image> imageList = new ArrayList<>();
 
 
     public Blog() {
@@ -72,11 +71,11 @@ public  class Blog {
     }
 
 
-    public List<Image> getImage() {
-        return image;
+    public List<Image> getImageList() {
+        return imageList;
     }
 
-    public void setImage(List<Image> image) {
-        this.image = image;
+    public void setImageList(List<Image> imageList) {
+        this.imageList = imageList;
     }
 }
