@@ -22,7 +22,9 @@ public class UserService {
     }
 
     public void deleteUser(int userId){
-
+        if(userRepository3.findById(userId)==null){
+            return;
+        }
         User user = userRepository3.findById(userId).get();
         userRepository3.delete(user);
 

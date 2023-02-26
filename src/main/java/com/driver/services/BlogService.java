@@ -37,7 +37,13 @@ public class BlogService {
 
     public void deleteBlog(int blogId){
 
+        if(blogRepository1.findById(blogId)==null){
+            return;
+        }
+
         Blog blog = blogRepository1.findById(blogId).get();
+
+
 
         User user = blog.getUser();
 
